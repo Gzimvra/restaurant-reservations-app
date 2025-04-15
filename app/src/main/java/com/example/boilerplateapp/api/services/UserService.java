@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * A service class that handles user-related operations such as login and registration.
@@ -118,28 +117,21 @@ public class UserService {
             return null;
         }
 
-        try (Connection conn = DBConnection.getConnection()) {
-            // 1. Check if the user already exists
-            if (userExists(user)) {
-                return null;
-            }
-
-            // 2. Hash the password using bcrypt (moved to ValidationHelper)
-            String hashedPassword = ValidationHelper.hashPassword(user.getPassword());
-
-            // 3. Insert new user with hashed password into the database
-            if (!insertNewUser(user, hashedPassword)) {
-                return null;
-            }
-
-            // 4. Retrieve and return the generated USER_ID
-            return getUserId(user.getUsername());
-
-        } catch (SQLException e) {
-            Log.e(TAG, "Error during registration", e);
+        // 1. Check if the user already exists
+        if (userExists(user)) {
+            return null;
         }
 
-        return null;
+        // 2. Hash the password using bcrypt (moved to ValidationHelper)
+        String hashedPassword = ValidationHelper.hashPassword(user.getPassword());
+
+        // 3. Insert new user with hashed password into the database
+        if (!insertNewUser(user, hashedPassword)) {
+            return null;
+        }
+
+        // 4. Retrieve and return the generated USER_ID
+        return getUserId(user.getUsername());
     }
 
     /**
