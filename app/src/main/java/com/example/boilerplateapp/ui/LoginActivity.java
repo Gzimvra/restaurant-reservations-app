@@ -74,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
                         // Login successful, pass the user object to HomeActivity
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         intent.putExtra("USER_OBJECT", finalUser); // Pass the User object
-                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         finish(); // Close LoginActivity
                     } else {

@@ -1,28 +1,49 @@
 package com.example.boilerplateapp.ui;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 import com.example.boilerplateapp.R;
 import com.example.boilerplateapp.api.models.User;
+import com.example.boilerplateapp.core.LocationHelper;
+
+import android.os.Bundle;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
+    private LocationHelper locationHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Retrieve the User object passed from the LoginActivity
         User user = (User) getIntent().getSerializableExtra("USER_OBJECT");
 
-        if (user != null) {
-            // Create a Toast message with the user's data (for example, username and email)
-            String userInfo = "\nUserID: " + user.getUserId() + "Username: " + user.getUsername() + "\nEmail: " + user.getEmail();
-            Toast.makeText(HomeActivity.this, userInfo, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(HomeActivity.this, "No user data found", Toast.LENGTH_SHORT).show();
+        if (user == null) {
+            Toast.makeText(this, "No user data found", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        locationHelper = new LocationHelper(this);
+        locationHelper.getCurrentLocation((latitude, longitude) -> {
+            if (latitude != null && longitude != null) {
+                Toast.makeText(this, "Latitude: " + latitude + "\nLongitude: " + longitude, Toast.LENGTH_SHORT).show();
+
+
+                // Do whatever we need with latitude and longitude here
+
+
+
+
+            } else {
+                Toast.makeText(this, "Failed to get location", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        locationHelper.onRequestPermissionsResult(requestCode, grantResults);
     }
 }

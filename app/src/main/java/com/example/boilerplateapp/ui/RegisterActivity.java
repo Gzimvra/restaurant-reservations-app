@@ -89,7 +89,6 @@ public class RegisterActivity extends AppCompatActivity {
                         // Registration successful, create an intent and pass the User object
                         Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                         intent.putExtra("USER_OBJECT", user);  // Pass the user object to HomeActivity
-                        Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         finish(); // Close the RegisterActivity
                     } else {

@@ -13,6 +13,7 @@ mysqlConnectorJava = "8.0.33"
 mysqlConnectorJavaVersion = "5.1.49"
 recyclerviewSwipedecorator = "1.4"
 recyclerview = "1.4.0"
+playServicesLocation = "21.3.0"
 
 [libraries]
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
@@ -29,6 +30,7 @@ mysql-connector-java = { module = "mysql:mysql-connector-java", version.ref = "m
 mysql-connector-java-v5149 = { module = "mysql:mysql-connector-java", version.ref = "mysqlConnectorJavaVersion" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 recyclerview-swipedecorator = { module = "it.xabaras.android:recyclerview-swipedecorator", version.ref = "recyclerviewSwipedecorator" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
