@@ -91,6 +91,15 @@
             android:text="Invalid username or password"
             android:layout_marginBottom="18dp"/>
 
+        <!-- Loading Spinner (initially hidden) -->
+        <ProgressBar
+            android:id="@+id/progressBarLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp"/>
+
         <!-- Login Button -->
         <Button
             android:id="@+id/buttonLogin"
