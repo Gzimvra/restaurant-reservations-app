@@ -1,6 +1,7 @@
 package com.example.boilerplateapp.api.models;
 
 public class Restaurant {
+    private final String id;
     private final String name;
     private final double latitude;
     private final double longitude;
@@ -12,8 +13,9 @@ public class Restaurant {
     private final String website;
 
     // Constructor
-    public Restaurant(String name, double latitude, double longitude, String city,
+    public Restaurant(String id, String name, double latitude, double longitude, String city,
                       String street, String houseNumber, String cuisine, String phone, String website) {
+        this.id = id;
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -25,7 +27,7 @@ public class Restaurant {
         this.website = website;
     }
 
-    // Getters (add setters if needed)
+    public String getId() { return id; }
     public String getName() { return name; }
     public double getLatitude() { return latitude; }
     public double getLongitude() { return longitude; }
@@ -36,4 +38,3 @@ public class Restaurant {
     public String getPhone() { return phone; }
     public String getWebsite() { return website; }
 }
-

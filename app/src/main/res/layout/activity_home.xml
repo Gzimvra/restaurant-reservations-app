@@ -2,12 +2,70 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_to_the_home_screen"
-        android:textSize="20sp"/>
+    <!-- Main content + ProgressBar -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9">
+
+        <!-- Main content wrapper (hidden during loading) -->
+        <LinearLayout
+            android:id="@+id/mainContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/restaurantRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp" />
+        </LinearLayout>
+
+        <!-- ProgressBar always centered -->
+        <ProgressBar
+            android:id="@+id/progressBarHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <!-- Bottom tab navigation -->
+    <LinearLayout
+        android:id="@+id/bottomMenu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:orientation="horizontal"
+        android:background="#EEEEEE"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tabHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Home"
+            android:textSize="16sp"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="12dp" />
+
+        <TextView
+            android:id="@+id/tabAccount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Account"
+            android:textSize="16sp"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="12dp" />
+    </LinearLayout>
+
 </LinearLayout>
