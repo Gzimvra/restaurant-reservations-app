@@ -35,7 +35,7 @@ public class ReservationService {
             stmt.setDouble(4, reservation.getRestaurantLongitude());
             stmt.setTimestamp(5, new java.sql.Timestamp(reservation.getReservationTime().getTime()));
             stmt.setInt(6, reservation.getGuestCount());
-            stmt.setString(7, reservation.getNotes());
+            stmt.setString(7, reservation.getNotes().isEmpty() ? null : reservation.getNotes());
 
             int rowsInserted = stmt.executeUpdate();
             return rowsInserted > 0;

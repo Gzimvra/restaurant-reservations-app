@@ -102,17 +102,29 @@ public class ReservationActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Parse the datetime string
                 Reservation reservation = getReservation(reservationTimeStr, guestCount, notes);
-                ReservationService reservationService = new ReservationService();
-                boolean success = reservationService.insertReservation(reservation);
 
-                if (success) {
-                    Toast.makeText(this, "Reservation saved to database!", Toast.LENGTH_SHORT).show();
-                } else {
-                    errorTextView.setText("Failed to save reservation to database.");
-                    errorTextView.setVisibility(View.VISIBLE);
-                }
+                new Thread(() -> {
+                    ReservationService reservationService = new ReservationService();
+                    boolean success = reservationService.insertReservation(reservation);
+
+                    runOnUiThread(() -> {
+                        if (success) {
+                            Toast.makeText(this, "Reservation saved successfully!", Toast.LENGTH_SHORT).show();
+
+
+
+                            // TODO: REDIRECT USER OR SHOW THE QRCODE
+
+
+
+
+                        } else {
+                            errorTextView.setText("Failed to make reservation.");
+                            errorTextView.setVisibility(View.VISIBLE);
+                        }
+                    });
+                }).start();
 
             } catch (NumberFormatException e) {
                 errorTextView.setText("Invalid guest count.");
@@ -126,7 +138,6 @@ public class ReservationActivity extends AppCompatActivity {
 
     @NonNull
     private Reservation getReservation(String reservationTimeStr, int guestCount, String notes) throws ParseException {
-        System.out.println(reservationTimeStr);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         Date reservationTime = sdf.parse(reservationTimeStr);
 
@@ -151,28 +162,24 @@ public class ReservationActivity extends AppCompatActivity {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(
-                ReservationActivity.this,
-                (dateView, selectedYear, selectedMonth, selectedDay) -> {
+                this,
+                (view, year1, month1, dayOfMonth) -> {
                     int hour = calendar.get(Calendar.HOUR_OF_DAY);
                     int minute = calendar.get(Calendar.MINUTE);
 
-                    TimePickerDialog timePickerDialog = new TimePickerDialog(
-                            ReservationActivity.this,
-                            (timeView, selectedHour, selectedMinute) -> {
-                                String dateTime = String.format(Locale.getDefault(),
+                    new TimePickerDialog(
+                            this,
+                            (view1, hourOfDay, minute1) -> {
+                                String formatted = String.format(Locale.getDefault(),
                                         "%04d-%02d-%02d %02d:%02d",
-                                        selectedYear, selectedMonth + 1, selectedDay,
-                                        selectedHour, selectedMinute);
-                                targetEditText.setText(dateTime);
+                                        year1, month1 + 1, dayOfMonth, hourOfDay, minute1);
+                                targetEditText.setText(formatted);
                             },
                             hour, minute, true
-                    );
-
-                    timePickerDialog.show();
+                    ).show();
                 },
                 year, month, day
         );
-
         datePickerDialog.show();
     }
 }
