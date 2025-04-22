@@ -36,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         progressBar = findViewById(R.id.progressBarHome);
-        mainContent = findViewById(R.id.mainContent); // 👈
+        mainContent = findViewById(R.id.mainContent);
 
         progressBar.setVisibility(View.VISIBLE);
         mainContent.setVisibility(View.GONE);
@@ -99,7 +99,6 @@ public class HomeActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
         }
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

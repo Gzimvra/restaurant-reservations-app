@@ -1,16 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:padding="20dp">
 
-    <TextView
-        android:id="@+id/helloText"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello"
-        android:textSize="24sp"
-        android:textColor="#000000"
-        android:layout_centerInParent="true" />
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-</RelativeLayout>
+        <!-- Restaurant Name -->
+        <TextView
+            android:id="@+id/restaurantNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Restaurant Name"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Cuisine Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/ic_menu_agenda"
+                android:layout_marginEnd="8dp"
+                app:tint="#888888" />
+
+            <TextView
+                android:id="@+id/restaurantCuisineText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Cuisine: Italian"
+                android:textSize="15sp"
+                android:textColor="#444444" />
+        </LinearLayout>
+
+        <!-- Address Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/ic_menu_mylocation"
+                android:layout_marginEnd="8dp"
+                app:tint="#888888" />
+
+            <TextView
+                android:id="@+id/restaurantAddressText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="123 Main St, City"
+                android:textSize="15sp"
+                android:textColor="#444444" />
+        </LinearLayout>
+
+        <!-- Phone Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/ic_menu_call"
+                android:layout_marginEnd="8dp"
+                app:tint="#888888" />
+
+            <TextView
+                android:id="@+id/restaurantPhoneText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="123-456-7890"
+                android:textSize="15sp"
+                android:textColor="#444444" />
+        </LinearLayout>
+
+        <!-- Website Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/ic_menu_view"
+                android:layout_marginEnd="8dp"
+                app:tint="#888888" />
+
+            <TextView
+                android:id="@+id/restaurantWebsiteText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="https://example.com"
+                android:autoLink="web"
+                android:textSize="15sp"
+                android:textColor="#444444" />
+        </LinearLayout>
+
+        <!-- Divider for next section -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Restaurant Name -->
+        <TextView
+            android:id="@+id/reservationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Book Reservation"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/editTextReservationTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Reservation Time"
+            android:focusable="false"
+            android:clickable="true"
+            android:inputType="none"
+            android:layout_marginBottom="30dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:background="@drawable/edittext_focused"
+            android:layout_marginTop="8dp"
+            android:importantForAccessibility="yes"
+            android:contentDescription="Reservation time input field" />
+
+        <!-- Guest Count -->
+        <EditText
+            android:id="@+id/editTextGuestCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Number of Guests"
+            android:inputType="number"
+            android:digits="0123456789"
+            android:layout_marginBottom="30dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:background="@drawable/edittext_focused"
+            android:layout_marginTop="8dp"
+            android:importantForAccessibility="yes"
+            android:contentDescription="Guest count input field" />
+
+        <!-- Notes -->
+        <EditText
+            android:id="@+id/editTextNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Additional Notes (optional)"
+            android:inputType="textMultiLine"
+            android:layout_marginBottom="30dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:minLines="3"
+            android:gravity="top|start"
+            android:background="@drawable/edittext_focused"
+            android:layout_marginTop="8dp"
+            android:importantForAccessibility="yes"
+            android:contentDescription="Reservation notes input field" />
+
+        <TextView
+            android:id="@+id/textViewError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FF0000"
+            android:textSize="14sp"
+            android:visibility="gone"
+            android:layout_marginTop="12dp"
+            android:importantForAccessibility="yes"
+            android:contentDescription="Error message display" />
+
+        <!-- Button to make reservation -->
+        <Button
+            android:id="@+id/buttonReserve"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reserve"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@drawable/button_bg"
+            android:importantForAccessibility="yes"
+            android:contentDescription="Reservation submit button" />
+
+    </LinearLayout>
+</ScrollView>

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.boilerplateapp.R;
 import com.example.boilerplateapp.api.models.Restaurant;
 import com.example.boilerplateapp.api.models.User;
+import com.example.boilerplateapp.ui.ReservationActivity;
 
 import java.util.List;
 import java.util.Objects;
@@ -48,10 +49,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Restaurant r = restaurantList.get(position);
-        holder.nameTextView.setText(r.getName());
+        Restaurant restaurant = restaurantList.get(position);
+        holder.nameTextView.setText(restaurant.getName());
 
-        String addressText = Stream.of(r.getStreet(), r.getHouseNumber(), r.getCity())
+        String addressText = Stream.of(restaurant.getStreet(), restaurant.getHouseNumber(), restaurant.getCity())
                 .filter(Objects::nonNull)
                 .collect(Collectors.joining(" ", "", ""));
 
@@ -60,12 +61,18 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         }
 
         holder.addressTextView.setText(addressText);
-        holder.cuisineTextView.setText(r.getCuisine() != null ? r.getCuisine() : "No cuisine info");
+        holder.cuisineTextView.setText(restaurant.getCuisine() != null ? restaurant.getCuisine() : "No cuisine info");
 
         // Handle click on the whole itemView (the card)
         holder.itemView.setOnClickListener(v -> {
-            System.out.println("Restaurant ID: " + r.getId());
+            System.out.println("Restaurant ID: " + restaurant.getRestaurantId());
             System.out.println("Clicked by user: " + (user != null ? user.getUsername() : "Unknown"));
+
+            // Create intent and pass both User and Restaurant
+            android.content.Intent intent = new android.content.Intent(v.getContext(), ReservationActivity.class);
+            intent.putExtra("USER_OBJECT", user);
+            intent.putExtra("RESTAURANT_OBJECT", restaurant);
+            v.getContext().startActivity(intent);
         });
     }
 

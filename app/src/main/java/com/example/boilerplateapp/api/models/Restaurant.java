@@ -1,6 +1,8 @@
 package com.example.boilerplateapp.api.models;
 
-public class Restaurant {
+import java.io.Serializable;
+
+public class Restaurant implements Serializable {
     private final String id;
     private final String name;
     private final double latitude;
@@ -27,7 +29,7 @@ public class Restaurant {
         this.website = website;
     }
 
-    public String getId() { return id; }
+    public String getRestaurantId() { return id; }
     public String getName() { return name; }
     public double getLatitude() { return latitude; }
     public double getLongitude() { return longitude; }
