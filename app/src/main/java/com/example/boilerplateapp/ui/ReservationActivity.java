@@ -1,6 +1,9 @@
 package com.example.boilerplateapp.ui;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,6 +15,7 @@ import com.example.boilerplateapp.api.models.Reservation;
 import com.example.boilerplateapp.api.models.Restaurant;
 import com.example.boilerplateapp.api.models.User;
 import com.example.boilerplateapp.api.services.ReservationService;
+import com.example.boilerplateapp.core.QRCodeHelper;
 
 import android.view.View;
 import android.app.DatePickerDialog;
@@ -77,6 +81,7 @@ public class ReservationActivity extends AppCompatActivity {
         EditText notesEditText = findViewById(R.id.editTextNotes);
         EditText reservationTimeEditText = findViewById(R.id.editTextReservationTime);
         TextView errorTextView = findViewById(R.id.textViewError);
+        ImageView qrCodeImageView = findViewById(R.id.imageViewQrCode);
 
         reservationTimeEditText.setOnClickListener(view -> showDateTimePicker(reservationTimeEditText));
 
@@ -106,18 +111,39 @@ public class ReservationActivity extends AppCompatActivity {
 
                 new Thread(() -> {
                     ReservationService reservationService = new ReservationService();
-                    boolean success = reservationService.insertReservation(reservation);
+                    String reservationId = reservationService.insertReservation(reservation);
 
                     runOnUiThread(() -> {
-                        if (success) {
+                        if (reservationId != null) {
+                            reservation.setReservationId(reservationId); // Optional, for reuse
                             Toast.makeText(this, "Reservation saved successfully!", Toast.LENGTH_SHORT).show();
 
+                            // Generate QR Code with basic reservation info
+                            String qrContent =
+                                    "ReservationID: " + reservationId
+                                    + "\nUserID: " + reservation.getUserId()
+                                    + "\nRestaurantID: " + reservation.getRestaurantId()
+                                    + "\nTime Scheduled: " + reservationTimeStr
+                                    + "\nGuests: " + reservation.getGuestCount()
+                                    + "\nNotes: " + reservation.getNotes();
 
+                            // Show the QRCode Image
+                            Bitmap qrBitmap = QRCodeHelper.generateQRCode(qrContent);
+                            if (qrBitmap != null) {
+                                qrCodeImageView.setImageBitmap(qrBitmap);
+                                qrCodeImageView.setVisibility(View.VISIBLE);
+                            }
 
-                            // TODO: REDIRECT USER OR SHOW THE QRCODE
+                            // Clear input fields after success
+                            guestCountEditText.setText("");
+                            notesEditText.setText("");
+                            reservationTimeEditText.setText("");
 
-
-
+                            Intent intent = new Intent(this, QRCodeActivity.class);
+                            intent.putExtra("USER_OBJECT", user);
+                            intent.putExtra("RESTAURANT_OBJECT", restaurant);
+                            intent.putExtra("RESERVATION_OBJECT", reservation);
+                            startActivity(intent);
 
                         } else {
                             errorTextView.setText("Failed to make reservation.");
@@ -155,31 +181,38 @@ public class ReservationActivity extends AppCompatActivity {
     }
 
     private void showDateTimePicker(EditText targetEditText) {
-        final Calendar calendar = Calendar.getInstance();
+        final Calendar now = Calendar.getInstance();
 
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        // Set minimum selectable date to tomorrow
+        Calendar minDate = (Calendar) now.clone();
+        minDate.add(Calendar.DAY_OF_MONTH, 1);
+
+        int currentYear = now.get(Calendar.YEAR);
+        int currentMonth = now.get(Calendar.MONTH);
+        int currentDay = now.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
-                (view, year1, month1, dayOfMonth) -> {
-                    int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                    int minute = calendar.get(Calendar.MINUTE);
+                (view, year, month, dayOfMonth) -> {
+                    int hour = now.get(Calendar.HOUR_OF_DAY);
+                    int minute = now.get(Calendar.MINUTE);
 
                     new TimePickerDialog(
                             this,
                             (view1, hourOfDay, minute1) -> {
                                 String formatted = String.format(Locale.getDefault(),
                                         "%04d-%02d-%02d %02d:%02d",
-                                        year1, month1 + 1, dayOfMonth, hourOfDay, minute1);
+                                        year, month + 1, dayOfMonth, hourOfDay, minute1);
                                 targetEditText.setText(formatted);
                             },
                             hour, minute, true
                     ).show();
                 },
-                year, month, day
+                currentYear, currentMonth, currentDay
         );
+
+        // Disable today and earlier
+        datePickerDialog.getDatePicker().setMinDate(minDate.getTimeInMillis());
         datePickerDialog.show();
     }
 }

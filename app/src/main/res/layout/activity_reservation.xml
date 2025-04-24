@@ -223,16 +223,25 @@
             android:id="@+id/buttonReserve"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_bg"
+            android:contentDescription="Reservation submit button"
+            android:importantForAccessibility="yes"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
             android:text="Reserve"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            android:background="@drawable/button_bg"
-            android:importantForAccessibility="yes"
-            android:contentDescription="Reservation submit button" />
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageViewQrCode"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:contentDescription="Reservation Details QRCode"
+            android:visibility="gone"
+            android:layout_marginVertical="35dp" />
 
     </LinearLayout>
 </ScrollView>

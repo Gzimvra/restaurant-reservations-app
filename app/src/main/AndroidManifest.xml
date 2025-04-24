@@ -28,5 +28,6 @@
         <activity android:name=".ui.RegisterActivity"/>
         <activity android:name=".ui.HomeActivity"/>
         <activity android:name=".ui.ReservationActivity"/>
+        <activity android:name=".ui.QRCodeActivity"/>
     </application>
 </manifest>
