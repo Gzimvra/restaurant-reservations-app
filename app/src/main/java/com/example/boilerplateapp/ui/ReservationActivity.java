@@ -1,7 +1,6 @@
 package com.example.boilerplateapp.ui;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +14,6 @@ import com.example.boilerplateapp.api.models.Reservation;
 import com.example.boilerplateapp.api.models.Restaurant;
 import com.example.boilerplateapp.api.models.User;
 import com.example.boilerplateapp.api.services.ReservationService;
-import com.example.boilerplateapp.core.QRCodeHelper;
 
 import android.view.View;
 import android.app.DatePickerDialog;
@@ -117,22 +115,6 @@ public class ReservationActivity extends AppCompatActivity {
                         if (reservationId != null) {
                             reservation.setReservationId(reservationId); // Optional, for reuse
                             Toast.makeText(this, "Reservation saved successfully!", Toast.LENGTH_SHORT).show();
-
-                            // Generate QR Code with basic reservation info
-                            String qrContent =
-                                    "ReservationID: " + reservationId
-                                    + "\nUserID: " + reservation.getUserId()
-                                    + "\nRestaurantID: " + reservation.getRestaurantId()
-                                    + "\nTime Scheduled: " + reservationTimeStr
-                                    + "\nGuests: " + reservation.getGuestCount()
-                                    + "\nNotes: " + reservation.getNotes();
-
-                            // Show the QRCode Image
-                            Bitmap qrBitmap = QRCodeHelper.generateQRCode(qrContent);
-                            if (qrBitmap != null) {
-                                qrCodeImageView.setImageBitmap(qrBitmap);
-                                qrCodeImageView.setVisibility(View.VISIBLE);
-                            }
 
                             // Clear input fields after success
                             guestCountEditText.setText("");
