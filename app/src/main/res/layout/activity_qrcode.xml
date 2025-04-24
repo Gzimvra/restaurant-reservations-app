@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:background="#ECECEC"
+    android:padding="24dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/qrContainer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="QRCODE PAGE EXAMPLE"
-        android:textSize="20sp"/>
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:padding="24dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/bg_qr_card"
+        android:elevation="6dp"
+        android:clipToPadding="false">
 
-    <ImageView
-        android:id="@+id/qrCodeImageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="20dp"
-        android:contentDescription="QR Code"/>
+        <TextView
+            android:id="@+id/qrTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Σκανάρετε το QR πριν από την είσοδό σας"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"
+            android:gravity="center" />
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/qrCodeImageView"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_gravity="center"
+            android:contentDescription="QR Code" />
+
+    </LinearLayout>
+</RelativeLayout>

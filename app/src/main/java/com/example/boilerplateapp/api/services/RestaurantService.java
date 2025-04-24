@@ -61,7 +61,7 @@ public class RestaurantService {
             if (restaurantJson == null) continue;
 
             long idLong = restaurantJson.optLong("id", -1);
-            if (idLong == -1) continue; // Skip if invalid
+            if (idLong == -1) continue;
             String id = String.valueOf(idLong);
 
             double lat = restaurantJson.optDouble("lat");
@@ -79,11 +79,12 @@ public class RestaurantService {
             String website = tags.optString("website", null);
 
             if (name != null) {
-                restaurantList.add(new Restaurant(id, name, lat, lon, city, street, houseNumber, cuisine, phone, website));
+                restaurantList.add(new Restaurant(
+                        id, name, lat, lon, city, street, houseNumber, cuisine, phone, website
+                ));
             }
         }
 
         return restaurantList;
     }
-
 }
