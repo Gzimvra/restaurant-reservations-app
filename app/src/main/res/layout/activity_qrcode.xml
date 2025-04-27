@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Σκανάρετε το QR κατά την είσοδό σας"
+        android:text="Scan the QR code upon entry"
         android:textSize="18sp"
         android:textColor="#222222"
         android:textStyle="bold"
@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Το προσωπικό του εστιατορίου θα σκανάρει αυτόν τον κωδικό για να επιβεβαιώσει την κράτησή σας και να σας οδηγήσει στο τραπέζι."
+        android:text="The restaurant staff will scan this code to confirm your reservation and escort you to your table"
         android:textSize="14sp"
         android:textColor="#444444"
         android:textAlignment="center" />

@@ -20,9 +20,9 @@ import java.util.List;
 
 public class RestaurantService {
 
-    public JSONArray getNearbyRestaurants(double latitude, double longitude) throws IOException, JSONException {
+    public JSONArray getNearbyRestaurants(double latitude, double longitude, String restaurantName) throws IOException, JSONException {
         String query = "[out:json];" +
-                "node[amenity=restaurant](around:10000," + latitude + "," + longitude + ");" +
+                "node[amenity=restaurant][name~\"" + restaurantName + "\",i](around:10000," + latitude + "," + longitude + ");" +
                 "out;";
         String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
         URL url = new URL("https://overpass-api.de/api/interpreter?data=" + encodedQuery);
