@@ -14,6 +14,7 @@ import com.example.boilerplateapp.api.models.Reservation;
 import com.example.boilerplateapp.api.models.Restaurant;
 import com.example.boilerplateapp.api.models.User;
 import com.example.boilerplateapp.api.services.ReservationService;
+import com.example.boilerplateapp.utils.BottomNavigationHelper;
 
 import android.view.View;
 import android.app.DatePickerDialog;
@@ -42,6 +43,13 @@ public class ReservationActivity extends AppCompatActivity {
             Toast.makeText(this, "No user or restaurant data found", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        // Directly instantiate BottomNavigationHelper
+        new BottomNavigationHelper(this,
+                findViewById(R.id.tabHome),
+                findViewById(R.id.tabAccount),
+                user
+        );
 
         setupRestaurantInfo();
         setupReservationForm();

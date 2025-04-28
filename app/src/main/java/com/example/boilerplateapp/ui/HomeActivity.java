@@ -6,6 +6,7 @@ import com.example.boilerplateapp.api.models.User;
 import com.example.boilerplateapp.api.services.RestaurantService;
 import com.example.boilerplateapp.core.LocationHelper;
 import com.example.boilerplateapp.ui.adapters.RestaurantAdapter;
+import com.example.boilerplateapp.utils.BottomNavigationHelper;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -68,14 +69,12 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        // NAVIGATION MENU
-        findViewById(R.id.tabHome).setOnClickListener(v -> {
-            Toast.makeText(this, "Home tab clicked", Toast.LENGTH_SHORT).show();
-        });
-
-        findViewById(R.id.tabAccount).setOnClickListener(v -> {
-            Toast.makeText(this, "Account tab clicked", Toast.LENGTH_SHORT).show();
-        });
+        // Directly instantiate BottomNavigationHelper
+        new BottomNavigationHelper(this,
+                findViewById(R.id.tabHome),
+                findViewById(R.id.tabAccount),
+                user
+        );
 
         setupSearchBar();
     }
