@@ -1,15 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#FFFFFF"
+    android:padding="20dp">
 
-    <!-- Hello User Text -->
+    <!-- Account Username -->
     <TextView
-        android:id="@+id/textViewHelloWorld"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello, World!"
-        android:textSize="24sp"
-        android:layout_centerInParent="true" />
+    android:id="@+id/accountUsername"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Username"
+    android:textSize="26sp"
+    android:textStyle="bold"
+    android:textColor="#000000" />
 
-</RelativeLayout>
+        <!-- Account Email -->
+    <TextView
+    android:id="@+id/accountEmail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Email"
+    android:textSize="20sp"
+    android:layout_marginBottom="15dp" />
+
+        <!-- Divider -->
+    <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="#CCCCCC"
+    android:layout_marginBottom="24dp" />
+
+        <!-- History Title -->
+    <TextView
+    android:id="@+id/historyTitleText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Reservation History"
+    android:textSize="24sp"
+    android:textStyle="bold"
+    android:textColor="#000000"
+    android:layout_marginBottom="12dp" />
+
+    <!-- Main content + ProgressBar -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9">
+
+        <!-- Main content wrapper (hidden during loading) -->
+        <LinearLayout
+            android:id="@+id/mainContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!--
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reservationRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp" />
+            -->
+        </LinearLayout>
+
+        <!-- ProgressBar always centered -->
+        <ProgressBar
+            android:id="@+id/progressBarHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</LinearLayout>
