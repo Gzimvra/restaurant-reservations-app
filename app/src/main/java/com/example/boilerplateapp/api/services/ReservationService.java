@@ -74,7 +74,9 @@ public class ReservationService {
      * @return a list of reservation objects, otherwise return null.
      */
     public List<Reservation> getReservations(User user) {
-        String accountHistoryQuery = "SELECT * FROM RESERVATIONS WHERE USER_ID = ?";
+        String accountHistoryQuery = "SELECT * FROM RESERVATIONS " +
+                "WHERE USER_ID = ? AND RESERVATION_TIME > CURRENT_TIMESTAMP()" +
+                "ORDER BY RESERVATION_TIME ASC";
         List<Reservation> reservations = new ArrayList<>();
 
         try (Connection conn = DBConnection.getConnection();
@@ -88,8 +90,6 @@ public class ReservationService {
                 reservation.setReservationId(rs.getString("RESERVATION_ID"));
                 reservation.setUserId(rs.getString("USER_ID"));
                 reservation.setRestaurantId(rs.getString("RESTAURANT_ID"));
-                reservation.setRestaurantLongitude(rs.getDouble("RESTAURANT_LONGITUDE"));
-                reservation.setRestaurantLatitude(rs.getDouble("RESTAURANT_LATITUDE"));
                 reservation.setReservationTime(rs.getTimestamp("RESERVATION_TIME"));
                 reservation.setGuestCount(rs.getInt("GUEST_COUNT"));
                 reservation.setNotes(rs.getString("NOTES"));
