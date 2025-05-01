@@ -1,6 +1,7 @@
 package com.example.boilerplateapp.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,28 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // Check if user is already logged in
+        SharedPreferences sharedPref = getSharedPreferences("UserSession", MODE_PRIVATE);
+        String savedUserId = sharedPref.getString("USER_ID", null);
+
+        if (savedUserId != null) {
+            // Reconstruct User object from saved session
+            String savedUsername = sharedPref.getString("USERNAME", "");
+            String savedEmail = sharedPref.getString("EMAIL", "");
+
+            User savedUser = new User();
+            savedUser.setUserId(savedUserId);
+            savedUser.setUsername(savedUsername);
+            savedUser.setEmail(savedEmail);
+
+            // Skip login, go to HomeActivity
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            intent.putExtra("USER_OBJECT", savedUser);
+            startActivity(intent);
+            finish();
+            return;
+        }
 
         // Initialize views
         editTextUsername = findViewById(R.id.editTextUsernameLogin);
@@ -70,11 +93,18 @@ public class LoginActivity extends AppCompatActivity {
                     buttonLogin.setEnabled(true);
 
                     if (finalUser != null) {
-                        // Login successful, pass the user object to HomeActivity
+                        // Save session
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("USER_ID", finalUser.getUserId());
+                        editor.putString("USERNAME", finalUser.getUsername());
+                        editor.putString("EMAIL", finalUser.getEmail());
+                        editor.apply();
+
+                        // Go to HomeActivity
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        intent.putExtra("USER_OBJECT", finalUser); // Pass the User object
+                        intent.putExtra("USER_OBJECT", finalUser);
                         startActivity(intent);
-                        finish(); // Close LoginActivity
+                        finish();
                     } else {
                         textViewError.setVisibility(View.VISIBLE);
                         textViewError.setText("Invalid username or password");
