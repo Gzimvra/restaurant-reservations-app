@@ -1,6 +1,7 @@
 package com.example.boilerplateapp.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -85,6 +86,14 @@ public class RegisterActivity extends AppCompatActivity {
                     buttonRegister.setEnabled(true);
 
                     if (finalUserId != null) {
+                        // Save user session
+                        SharedPreferences sharedPref = getSharedPreferences("UserSession", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("USER_ID", user.getUserId());
+                        editor.putString("USERNAME", user.getUsername());
+                        editor.putString("EMAIL", user.getEmail());
+                        editor.apply();
+
                         // Registration successful, create an intent and pass the User object
                         Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                         intent.putExtra("USER_OBJECT", user);  // Pass the user object to HomeActivity
