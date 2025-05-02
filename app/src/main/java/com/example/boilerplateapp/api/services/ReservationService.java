@@ -105,4 +105,25 @@ public class ReservationService {
 
         return reservations;
     }
+
+    /**
+     * Deletes a reservation from the RESERVATIONS table based on reservation ID.
+     *
+     * @param reservationId the UUID of the reservation to delete.
+     * @return true if deletion was successful, false otherwise.
+     */
+    public boolean deleteReservation(String reservationId) {
+        String deleteQuery = "DELETE FROM RESERVATIONS WHERE RESERVATION_ID = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(deleteQuery)) {
+
+            stmt.setString(1, reservationId);
+            int rowsDeleted = stmt.executeUpdate();
+            return rowsDeleted > 0;
+
+        } catch (SQLException e) {
+            Log.e(TAG, "Error deleting reservation", e);
+            return false;
+        }
+    }
 }
