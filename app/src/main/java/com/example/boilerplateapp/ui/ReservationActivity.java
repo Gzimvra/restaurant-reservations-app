@@ -131,7 +131,6 @@ public class ReservationActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(this, QRCodeActivity.class);
                             intent.putExtra("USER_OBJECT", user);
-                            intent.putExtra("RESTAURANT_OBJECT", restaurant);
                             intent.putExtra("RESERVATION_OBJECT", reservation);
                             startActivity(intent);
 

@@ -49,7 +49,7 @@
             android:id="@+id/historyTitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Reservation History"
+            android:text="Pending Reservations"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="#000000" />

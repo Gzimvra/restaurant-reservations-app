@@ -13,7 +13,6 @@ import com.example.boilerplateapp.core.QRCodeHelper;
 
 public class QRCodeActivity extends AppCompatActivity {
     private User user;
-    private Restaurant restaurant;
     private Reservation reservation;
     private ImageView qrCodeImageView;
 
@@ -23,12 +22,11 @@ public class QRCodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qrcode);
 
         user = (User) getIntent().getSerializableExtra("USER_OBJECT");
-        restaurant = (Restaurant) getIntent().getSerializableExtra("RESTAURANT_OBJECT");
         reservation = (Reservation) getIntent().getSerializableExtra("RESERVATION_OBJECT");
 
         qrCodeImageView = findViewById(R.id.qrCodeImageView);
 
-        if (user == null || restaurant == null || reservation == null) {
+        if (user == null || reservation == null) {
             Toast.makeText(this, "No user, restaurant or reservation data found", Toast.LENGTH_SHORT).show();
             return;
         }

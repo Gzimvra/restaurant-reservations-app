@@ -56,7 +56,7 @@ public class AccountActivity extends AppCompatActivity {
             List<Reservation> reservations = reservationService.getReservations(user);
             runOnUiThread(() -> {
                 if (reservations != null) {
-                    AccountAdapter adapter = new AccountAdapter(reservations);
+                    AccountAdapter adapter = new AccountAdapter(reservations, user);
                     recyclerView.setAdapter(adapter);
                     mainContent.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
