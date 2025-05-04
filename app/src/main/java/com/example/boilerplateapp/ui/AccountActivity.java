@@ -6,6 +6,7 @@ import com.example.boilerplateapp.api.models.User;
 import com.example.boilerplateapp.api.services.ReservationService;
 import com.example.boilerplateapp.ui.adapters.AccountAdapter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -44,6 +45,27 @@ public class AccountActivity extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.accountUsername)).setText(user.getUsername());
         ((TextView) findViewById(R.id.accountEmail)).setText(user.getEmail());
+
+        findViewById(R.id.logoutButton).setOnClickListener(v -> {
+            new androidx.appcompat.app.AlertDialog.Builder(AccountActivity.this)
+                    .setTitle("Confirm Logout")
+                    .setMessage("Are you sure you want to log out? You will need to log in again to access your account.")
+                    .setPositiveButton("Logout", (dialog, which) -> {
+                        // Clear session
+                        getSharedPreferences("UserSession", MODE_PRIVATE)
+                                .edit()
+                                .clear()
+                                .apply();
+
+                        // Go back to login screen
+                        Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        });
 
         fetchReservationHistory(user);
     }

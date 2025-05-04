@@ -51,26 +51,33 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.Reservat
         holder.notes.setText("Notes: " + (reservation.getNotes() == null ? "N/A" : reservation.getNotes()));
 
         holder.deleteButton.setOnClickListener(v -> {
-            String reservationId = reservation.getReservationId();
+            new androidx.appcompat.app.AlertDialog.Builder(v.getContext())
+                    .setTitle("Delete Reservation")
+                    .setMessage("Are you sure you want to delete this reservation? This action cannot be undone.")
+                    .setPositiveButton("Delete", (dialog, which) -> {
+                        String reservationId = reservation.getReservationId();
 
-            // Run the deletion logic on a background thread
-            ExecutorService executor = Executors.newSingleThreadExecutor();
-            executor.execute(() -> {
-                boolean deleted = new ReservationService().deleteReservation(reservationId);
+                        // Run the deletion logic on a background thread
+                        ExecutorService executor = Executors.newSingleThreadExecutor();
+                        executor.execute(() -> {
+                            boolean deleted = new ReservationService().deleteReservation(reservationId);
 
-                // After background task, update the UI on the main thread
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    if (deleted) {
-                        // If deletion was successful, update the UI
-                        reservations.remove(position);
-                        notifyItemRemoved(position);
-                        notifyItemRangeChanged(position, reservations.size()); // Keeps positions in sync
-                    } else {
-                        System.out.println("Failed to delete reservation");
-                    }
-                });
-            });
+                            // After background task, update the UI on the main thread
+                            new Handler(Looper.getMainLooper()).post(() -> {
+                                if (deleted) {
+                                    reservations.remove(holder.getAdapterPosition());
+                                    notifyItemRemoved(holder.getAdapterPosition());
+                                    notifyItemRangeChanged(holder.getAdapterPosition(), reservations.size());
+                                } else {
+                                    System.out.println("Failed to delete reservation");
+                                }
+                            });
+                        });
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
         });
+
         holder.qrcodeButton.setOnClickListener(v -> {
             Context context = v.getContext();
             Intent intent = new Intent(context, QRCodeActivity.class);
