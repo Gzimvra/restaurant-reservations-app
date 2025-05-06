@@ -110,4 +110,9 @@
             android:visibility="gone" />
     </FrameLayout>
 
+    <include
+        android:id="@+id/bottomMenu"
+        layout="@layout/bottom_tab_navigation"
+        android:layout_height="56dp"/>
+
 </LinearLayout>

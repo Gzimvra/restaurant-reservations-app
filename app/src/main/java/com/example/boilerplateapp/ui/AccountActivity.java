@@ -5,6 +5,7 @@ import com.example.boilerplateapp.api.models.Reservation;
 import com.example.boilerplateapp.api.models.User;
 import com.example.boilerplateapp.api.services.ReservationService;
 import com.example.boilerplateapp.ui.adapters.AccountAdapter;
+import com.example.boilerplateapp.utils.BottomNavigationHelper;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -68,6 +69,13 @@ public class AccountActivity extends AppCompatActivity {
         });
 
         fetchReservationHistory(user);
+
+        // Directly instantiate BottomNavigationHelper
+        new BottomNavigationHelper(this,
+                findViewById(R.id.tabHome),
+                findViewById(R.id.tabAccount),
+                user
+        );
     }
 
     private void fetchReservationHistory(User user) {

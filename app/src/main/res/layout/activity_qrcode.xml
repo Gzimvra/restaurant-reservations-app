@@ -1,43 +1,59 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="24dp"
     android:background="@android:color/white">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Scan the QR code upon entry"
-        android:textSize="18sp"
-        android:textColor="#222222"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp"/>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/bg_qr_card">
-
-        <ImageView
-            android:id="@+id/qrCodeImageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp"
-            android:scaleType="fitCenter"
-            android:contentDescription="QR Code" />
-    </androidx.cardview.widget.CardView>
-
-    <TextView
+    <LinearLayout
+        android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The restaurant staff will scan this code to confirm your reservation and escort you to your table"
-        android:textSize="14sp"
-        android:textColor="#444444"
-        android:textAlignment="center" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:layout_above="@+id/bottomMenu"
+        android:gravity="center"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan the QR code upon entry"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_qr_card">
+
+            <ImageView
+                android:id="@+id/qrCodeImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="QR Code" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="The restaurant staff will scan this code to confirm your reservation and escort you to your table"
+            android:textSize="14sp"
+            android:textColor="#444444"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/bottomMenu"
+        layout="@layout/bottom_tab_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

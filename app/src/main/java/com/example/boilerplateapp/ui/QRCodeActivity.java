@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.boilerplateapp.R;
 import com.example.boilerplateapp.api.models.*;
 import com.example.boilerplateapp.core.QRCodeHelper;
+import com.example.boilerplateapp.utils.BottomNavigationHelper;
 
 public class QRCodeActivity extends AppCompatActivity {
     private User user;
@@ -33,6 +34,13 @@ public class QRCodeActivity extends AppCompatActivity {
 
         // Generate the QR code
         generateQRCode();
+
+        // Directly instantiate BottomNavigationHelper
+        new BottomNavigationHelper(this,
+                findViewById(R.id.tabHome),
+                findViewById(R.id.tabAccount),
+                user
+        );
     }
 
     private void generateQRCode() {
