@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:layout_above="@+id/bottomMenu">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,140 +19,138 @@
             <!-- Restaurant Name -->
             <TextView
                 android:id="@+id/restaurantNameText"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Restaurant Name"
-                android:textSize="26sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="#000000"
-                android:layout_marginBottom="12dp" />
-
-            <!-- Divider -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#CCCCCC"
+                android:textColor="#0D47A1"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Cuisine Row -->
+            <!-- Info Cards -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp"
-                android:gravity="center_vertical">
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="#F5F5F5"
+                android:layout_marginBottom="24dp"
+                android:elevation="2dp"
+                android:clipToPadding="false"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="4dp"
+                android:radius="12dp">
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@android:drawable/ic_menu_agenda"
-                    android:layout_marginEnd="8dp"
-                    app:tint="#888888" />
-
-                <TextView
-                    android:id="@+id/restaurantCuisineText"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                <!-- Row Template -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cuisine: Italian"
-                    android:textSize="15sp"
-                    android:textColor="#444444" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@android:drawable/ic_menu_agenda"
+                        android:tint="#2196F3"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:id="@+id/restaurantCuisineText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Cuisine: Italian"
+                        android:textSize="16sp"
+                        android:textColor="#333333" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@android:drawable/ic_menu_mylocation"
+                        android:tint="#2196F3"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:id="@+id/restaurantAddressText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="123 Main St, City"
+                        android:textSize="16sp"
+                        android:textColor="#333333" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@android:drawable/ic_menu_call"
+                        android:tint="#2196F3"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:id="@+id/restaurantPhoneText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="123-456-7890"
+                        android:textSize="16sp"
+                        android:textColor="#333333" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@android:drawable/ic_menu_view"
+                        android:tint="#2196F3"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:id="@+id/restaurantWebsiteText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="https://example.com"
+                        android:autoLink="web"
+                        android:textSize="16sp"
+                        android:textColor="#333333" />
+                </LinearLayout>
             </LinearLayout>
 
-            <!-- Address Row -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@android:drawable/ic_menu_mylocation"
-                    android:layout_marginEnd="8dp"
-                    app:tint="#888888" />
-
-                <TextView
-                    android:id="@+id/restaurantAddressText"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="123 Main St, City"
-                    android:textSize="15sp"
-                    android:textColor="#444444" />
-            </LinearLayout>
-
-            <!-- Phone Row -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@android:drawable/ic_menu_call"
-                    android:layout_marginEnd="8dp"
-                    app:tint="#888888" />
-
-                <TextView
-                    android:id="@+id/restaurantPhoneText"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="123-456-7890"
-                    android:textSize="15sp"
-                    android:textColor="#444444" />
-            </LinearLayout>
-
-            <!-- Website Row -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@android:drawable/ic_menu_view"
-                    android:layout_marginEnd="8dp"
-                    app:tint="#888888" />
-
-                <TextView
-                    android:id="@+id/restaurantWebsiteText"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="https://example.com"
-                    android:autoLink="web"
-                    android:textSize="15sp"
-                    android:textColor="#444444" />
-            </LinearLayout>
-
-            <!-- Divider for next section -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#CCCCCC"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp" />
-
-            <!-- Restaurant Name -->
+            <!-- Book Reservation Section -->
             <TextView
                 android:id="@+id/reservationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Book Reservation"
-                android:textSize="26sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="#000000"
-                android:layout_marginBottom="12dp" />
+                android:textColor="#0D47A1"
+                android:layout_marginBottom="16dp" />
 
+            <!-- Reservation Time -->
             <EditText
                 android:id="@+id/editTextReservationTime"
                 android:layout_width="match_parent"
@@ -161,16 +159,11 @@
                 android:focusable="false"
                 android:clickable="true"
                 android:inputType="none"
-                android:layout_marginBottom="30dp"
-                android:paddingLeft="16dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
+                android:padding="14dp"
+                android:textColor="#000000"
+                android:textSize="16sp"
                 android:background="@drawable/edittext_focused"
-                android:layout_marginTop="8dp"
-                android:importantForAccessibility="yes"
-                android:contentDescription="Reservation time input field" />
+                android:layout_marginBottom="20dp" />
 
             <!-- Guest Count -->
             <EditText
@@ -180,16 +173,11 @@
                 android:hint="Number of Guests"
                 android:inputType="number"
                 android:digits="0123456789"
-                android:layout_marginBottom="30dp"
-                android:paddingLeft="16dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
+                android:padding="14dp"
+                android:textColor="#000000"
+                android:textSize="16sp"
                 android:background="@drawable/edittext_focused"
-                android:layout_marginTop="8dp"
-                android:importantForAccessibility="yes"
-                android:contentDescription="Guest count input field" />
+                android:layout_marginBottom="20dp" />
 
             <!-- Notes -->
             <EditText
@@ -198,55 +186,49 @@
                 android:layout_height="wrap_content"
                 android:hint="Additional Notes (optional)"
                 android:inputType="textMultiLine"
-                android:layout_marginBottom="30dp"
-                android:paddingLeft="16dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
                 android:minLines="3"
                 android:gravity="top|start"
+                android:padding="14dp"
+                android:textColor="#000000"
+                android:textSize="16sp"
                 android:background="@drawable/edittext_focused"
-                android:layout_marginTop="8dp"
-                android:importantForAccessibility="yes"
-                android:contentDescription="Reservation notes input field" />
+                android:layout_marginBottom="20dp" />
 
+            <!-- Error Text -->
             <TextView
                 android:id="@+id/textViewError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FF0000"
+                android:textColor="#D32F2F"
                 android:textSize="14sp"
                 android:visibility="gone"
-                android:layout_marginTop="12dp"
-                android:importantForAccessibility="yes"
-                android:contentDescription="Error message display" />
+                android:layout_marginBottom="8dp" />
 
-            <!-- Button to make reservation -->
-            <Button
+            <!-- Submit Button -->
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonReserve"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/button_bg"
-                android:contentDescription="Reservation submit button"
-                android:importantForAccessibility="yes"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
                 android:text="Reserve"
                 android:textColor="#FFFFFF"
+                android:background="@drawable/button_bg"
+                android:backgroundTint="@null"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:layout_marginTop="8dp" />
 
+            <!-- QR Code (Hidden Initially) -->
             <ImageView
                 android:id="@+id/imageViewQrCode"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:contentDescription="Reservation Details QRCode"
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="36dp"
                 android:visibility="gone"
-                android:layout_marginVertical="35dp" />
-
+                android:contentDescription="Reservation QR Code" />
         </LinearLayout>
     </ScrollView>
 
@@ -256,5 +238,4 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_alignParentBottom="true" />
-
 </RelativeLayout>

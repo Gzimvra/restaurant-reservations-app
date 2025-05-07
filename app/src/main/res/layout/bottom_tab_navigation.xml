@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="0.1"
     android:orientation="horizontal"
-    android:background="#EEEEEE"
+    android:background="#0D47A1"
     android:weightSum="2">
 
     <TextView
@@ -14,6 +13,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="Home"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:background="?android:attr/selectableItemBackground"
         android:padding="12dp" />
@@ -25,6 +25,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="Account"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:background="?android:attr/selectableItemBackground"
         android:padding="12dp" />

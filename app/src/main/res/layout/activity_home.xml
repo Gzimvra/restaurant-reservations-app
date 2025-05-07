@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#F2F6FC"
     android:weightSum="1">
 
     <!-- Search bar -->
@@ -17,7 +17,7 @@
         android:layout_margin="16dp"
         android:layout_marginTop="24dp"
         android:gravity="center_vertical"
-        android:elevation="6dp">
+        android:elevation="8dp">
 
         <ImageView
             android:id="@+id/searchIcon"
@@ -25,7 +25,7 @@
             android:layout_height="24dp"
             android:src="@android:drawable/ic_menu_search"
             android:contentDescription="Search Icon"
-            app:tint="#888888" />
+            android:tint="#0D47A1" />
 
         <EditText
             android:id="@+id/searchEditText"
@@ -35,6 +35,8 @@
             android:hint="Search restaurants..."
             android:background="@android:color/transparent"
             android:paddingStart="16dp"
+            android:textColor="#0D47A1"
+            android:textColorHint="#8899BB"
             android:textSize="18sp"
             android:inputType="text" />
     </LinearLayout>
@@ -45,7 +47,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.9">
 
-        <!-- Main content wrapper (hidden during loading) -->
+        <!-- Main content wrapper -->
         <LinearLayout
             android:id="@+id/mainContent"
             android:layout_width="match_parent"
@@ -69,9 +71,9 @@
             android:visibility="gone" />
     </FrameLayout>
 
+    <!-- Bottom Navigation -->
     <include
         android:id="@+id/bottomMenu"
         layout="@layout/bottom_tab_navigation"
         android:layout_height="56dp"/>
-
 </LinearLayout>

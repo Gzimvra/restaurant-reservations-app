@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- When the button is pressed -->
+    <!-- Pressed state -->
     <item android:state_pressed="true">
-        <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="#00695C"/> <!-- Darker color on press -->
-            <corners android:radius="24dp"/> <!-- Rounded corners -->
+        <shape>
+            <solid android:color="#1976D2"/> <!-- Darker blue -->
+            <corners android:radius="24dp"/>
         </shape>
     </item>
     <!-- Default state -->
     <item>
-        <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="#00796B"/> <!-- Main color -->
-            <corners android:radius="24dp"/> <!-- Rounded corners -->
+        <shape>
+            <solid android:color="#2196F3"/> <!-- Primary blue -->
+            <corners android:radius="24dp"/>
         </shape>
     </item>
 </selector>
